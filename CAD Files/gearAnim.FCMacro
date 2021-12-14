@@ -1,0 +1,22 @@
+from PySide import QtCore
+
+GearBigTeeth = 24
+GearSmallTeeth = 12
+GearSmallAngleOffset = 15
+r = 0
+
+def update():
+	global GearBigTeeth, GearSmallTeeth, GearSmallAngleOffset, r
+	# GearSmall
+	App.getDocument("gears").Cut001.Placement=App.Placement(App.Vector(11.34,0,0), App.Rotation(App.Vector(0,0,1),15+r), App.Vector(0,0,0))
+	# GearBig
+	App.getDocument("gears").Cut.Placement=App.Placement(App.Vector(0,0,0), App.Rotation(App.Vector(0,0,1), (-r/2)), App.Vector(0,0,0))
+	r += 0.1
+	
+timer = QtCore.QTimer()
+timer.timeout.connect(update) 
+timer.start(1)
+
+
+
+
